@@ -17,6 +17,7 @@ import { Stage } from "./Stage";
 
 export const Experience = () => {
   const currentKana = useGameStore((state) => state.currentKana);
+  const lastWrongKana = useGameStore((state) => state.lastWrongKana);
 
   return (
     <>
@@ -32,10 +33,25 @@ export const Experience = () => {
 
       {/* BACKGROUND */}
 
-      {currentKana && (
-        <Text position={[0, -1, -20]}>
-          {currentKana.name.toUpperCase()}
-          <meshStandardMaterial color="black" opacity={0.6} transparent />
+      <Text
+        position={[0, -0.92, 0]}
+        fontSize={1.84}
+        rotation-x={-Math.PI / 2}
+        font="./fonts/Poppins-ExtraBold.ttf"
+      >
+        {currentKana ? currentKana.name.toUpperCase() : "Kana Game"}
+        <meshStandardMaterial color="white" opacity={0.6} transparent />
+      </Text>
+
+      {lastWrongKana && (
+        <Text
+          position={[0, -0.92, 1.2]}
+          fontSize={1}
+          rotation-x={-Math.PI / 2}
+          font="./fonts/Poppins-ExtraBold.ttf"
+        >
+          {lastWrongKana.name.toUpperCase()}
+          <meshStandardMaterial color="red" opacity={0.6} transparent />
         </Text>
       )}
 
