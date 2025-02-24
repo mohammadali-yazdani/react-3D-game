@@ -43,6 +43,7 @@ export const useGameStore = create(
     level: null,
     currentStage: 0,
     currentKana: null,
+    lastWrongKana: null,
     mode: "hiragana",
     gameState: gameStates.MENU,
     wrongAnswers: 0,
@@ -62,6 +63,7 @@ export const useGameStore = create(
         currentKana,
         gameState: gameStates.GAME,
         mode,
+        lastWrongKana: null,
       });
     },
     nextStage: () => {
@@ -85,7 +87,7 @@ export const useGameStore = create(
           playAudio(`kanas/${currentKana.name}`);
         });
         playAudio(`kanas/${currentKana.name}`);
-        return { currentStage, currentKana };
+        return { currentStage, currentKana, lastWrongKana: null };
       });
     },
     goToMenu: () => {
@@ -105,8 +107,16 @@ export const useGameStore = create(
         });
         set((state) => ({
           wrongAnswers: state.wrongAnswers + 1,
+          lastWrongKana: kana,
         }));
       }
     },
+
+    // CHARACTER CONTROLLER
+    characterState: "Idle",
+    setCharacterState: (characterState) =>
+      set({
+        characterState,
+      }),
   }))
 );
