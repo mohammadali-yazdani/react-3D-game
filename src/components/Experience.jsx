@@ -1,4 +1,9 @@
-import { Environment, OrbitControls, Text } from "@react-three/drei";
+import {
+  ContactShadows,
+  Environment,
+  OrbitControls,
+  Text,
+} from "@react-three/drei";
 import {
   CuboidCollider,
   CylinderCollider,
@@ -44,6 +49,15 @@ export const Experience = () => {
           </mesh>
           <CuboidCollider position={[0, -3.5, 0]} args={[50, 0.1, 50]} sensor />
         </RigidBody>
+        <ContactShadows
+          frames={1}
+          position={[0, -0.88, 0]}
+          scale={80}
+          opacity={0.42}
+          far={50}
+          blur={0.8}
+          color="#aa9acd"
+        />
 
         {/* STAGE */}
         <Stage position-y={-0.92} />
